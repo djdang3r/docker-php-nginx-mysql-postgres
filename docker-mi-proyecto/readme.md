@@ -66,7 +66,7 @@ docker compose version
 ```bash
 # Clonar el repositorio
 git clone <URL_DEL_REPO>
-cd compiler-docker-nginx/docker-mi-proyecto
+cd docker-compiler-nginx-mysql/docker-mi-proyecto
 
 # Copiar variables de entorno
 cp .env.example .env
@@ -128,7 +128,7 @@ docker compose ps
 ## 📁 Estructura del Proyecto
 
 ```
-compiler-docker-nginx/
+docker-compiler-nginx-mysql/
 │
 ├── docker-mi-proyecto/         # Configuración Docker
 │   ├── docker-compose.yaml     # Orquestación de servicios

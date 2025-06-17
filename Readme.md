@@ -1,4 +1,4 @@
-# 🚀 docker-compiler-nginx
+# 🚀 docker-compiler-nginx-mysql
 
 [![Docker](https://img.shields.io/badge/Docker-20.10%2B-blue?logo=docker)](https://www.docker.com/)
 [![PHP](https://img.shields.io/badge/PHP-8.4.8-purple?logo=php)](https://php.net/)
