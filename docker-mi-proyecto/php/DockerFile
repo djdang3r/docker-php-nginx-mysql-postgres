@@ -1,0 +1,28 @@
+FROM php:8.4.8-fpm
+
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    zip \
+    unzip \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libwebp-dev \
+    libxpm-dev \
+    libxml2-dev \
+    libzip-dev \
+    imagemagick \
+    libmagickwand-dev \
+    libonig-dev \
+    libicu-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp --with-xpm \
+    && docker-php-ext-install gd \
+    && docker-php-ext-install mysqli pdo pdo_mysql intl mbstring exif pcntl soap xml zip \
+    && pecl install imagick \
+    && docker-php-ext-enable imagick \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug \
+    && apt-get clean
+
+WORKDIR /var/www
