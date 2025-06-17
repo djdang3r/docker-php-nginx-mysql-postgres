@@ -3,7 +3,7 @@
 Entorno de desarrollo completo para aplicaciones web modernas usando **Docker Compose**. Optimizado para frameworks como **Laravel** y **CodeIgniter** con herramientas de desarrollo integradas.
 
 [![Docker](https://img.shields.io/badge/Docker-20.10+-blue.svg)](https://www.docker.com/)
-[![PHP](https://img.shields.io/badge/PHP-8.4.8-purple.svg)](https://php.net/)
+[![PHP](https://img.shields.io/badge/PHP-8.1.32-purple.svg)](https://php.net/)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0-orange.svg)](https://mysql.com/)
 [![Nginx](https://img.shields.io/badge/Nginx-1.28-green.svg)](https://nginx.org/)
 
@@ -108,7 +108,7 @@ docker compose ps
 
 | Servicio         | Versión | Puerto    | Descripción                                      |
 |------------------|---------|-----------|--------------------------------------------------|
-| **PHP-FPM**      | 8.4.8   | -         | Backend con extensiones para Laravel/CodeIgniter |
+| **PHP-FPM**      | 8.1.32   | -         | Backend con extensiones para Laravel/CodeIgniter |
 | **Nginx**        | 1.28    | 8001/8441 | Servidor web de alto rendimiento (HTTP/HTTPS)    |
 | **MySQL**        | 8.0     | 3306      | Base de datos relacional                         |
 | **phpMyAdmin**   | Latest  | 8081      | Interfaz web para MySQL                          |

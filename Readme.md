@@ -1,7 +1,7 @@
 # 🚀 docker-compiler-nginx-mysql
 
 [![Docker](https://img.shields.io/badge/Docker-20.10%2B-blue?logo=docker)](https://www.docker.com/)
-[![PHP](https://img.shields.io/badge/PHP-8.4.8-purple?logo=php)](https://php.net/)
+[![PHP](https://img.shields.io/badge/PHP-8.1.32-purple?logo=php)](https://php.net/)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0-orange?logo=mysql)](https://mysql.com/)
 [![Nginx](https://img.shields.io/badge/Nginx-1.28-green?logo=nginx)](https://nginx.org/)
 
@@ -18,10 +18,10 @@
 ├── (código fuente)      # Tu aplicación PHP (por defecto en la raíz)
 ```
 
-- **docker-mi-proyecto/**  
-  Configuración principal de Docker Compose, archivos de entorno, Nginx, PHP, MySQL y documentación detallada.
-- **(código fuente de tu aplicación)**  
-  Por defecto, tu código debe estar en la raíz del repositorio. Puedes ajustar la configuración para usar otra carpeta (ver documentación interna).
+-   **docker-mi-proyecto/**  
+    Configuración principal de Docker Compose, archivos de entorno, Nginx, PHP, MySQL y documentación detallada.
+-   **(código fuente de tu aplicación)**  
+    Por defecto, tu código debe estar en la raíz del repositorio. Puedes ajustar la configuración para usar otra carpeta (ver documentación interna).
 
 ---
 
