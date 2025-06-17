@@ -48,7 +48,6 @@ services:
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
             MYSQL_DATABASE: ${MYSQL_DATABASE}
 
-
     # phpmyadmin (opcional) en el readme explico el por qué
     phpmyadmin:
         image: phpmyadmin:5.2.2-apache
@@ -86,5 +85,5 @@ volumes:
 
 networks:
   default:
-    external:
-      name: mi_proyecto_network_nginx
+    name: mi_proyecto_network_nginx
+    external: true
