@@ -97,6 +97,10 @@ Consulta la documentación completa en [`docker-mi-proyecto/readme.md`](docker-m
 **Antonio Salcedo**  
 _Desarrollador Full Stack_
 
+## 📄 License
+
+This project is licensed under the **MIT** license. See the [LICENSE](LICENSE) file for more details.
+
 ---
 
 **¡Feliz desarrollo! 🚀**
