@@ -1,46 +1,50 @@
 # 🚀 docker-php-nginx-mysql-postgres
 
+> 🇪🇸 **¿Hablas español?**  
+> We have prepared a fully translated and detailed version of this documentation in [Spanish](./Readme.es.md), so you can follow every step, tip, and best practice in your native language.  
+> _Switch to Spanish for a more comfortable reading experience!_
+
 [![Docker](https://img.shields.io/badge/Docker-20.10%2B-blue?logo=docker)](https://www.docker.com/)
 [![PHP](https://img.shields.io/badge/PHP-8.4.8-purple?logo=php)](https://php.net/)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0-orange?logo=mysql)](https://mysql.com/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue?logo=postgresql)](https://postgresql.org/)
 [![Nginx](https://img.shields.io/badge/Nginx-1.28-green?logo=nginx)](https://nginx.org/)
 
-> **Stack de desarrollo Dockerizado para aplicaciones PHP modernas con Nginx, MySQL, PostgreSQL, Xdebug, phpMyAdmin y pgAdmin.**  
-> Soporta proyectos **Laravel**, **CodeIgniter 3/4** y otros frameworks PHP. Ideal para entornos multi-proyecto y pruebas de stack.
+> **Dockerized development stack for modern PHP applications with Nginx, MySQL, PostgreSQL, Xdebug, phpMyAdmin and pgAdmin.**  
+> Supports **Laravel**, **CodeIgniter 3/4** projects and other PHP frameworks. Ideal for multi-project environments and stack testing.
 
 ---
 
-> ⚠️ **Nota importante:**  
-> Los puertos `8081` (phpMyAdmin) y `8082` (pgAdmin) están reservados para las interfaces web de administración de MySQL y PostgreSQL, respectivamente.  
-> Lo más recomendable es utilizar **solo uno de los motores de base de datos** y su respectiva herramienta de administración, salvo que tu proyecto requiera explícitamente ambos.
+> ⚠️ **Important note:**  
+> Ports `8081` (phpMyAdmin) and `8082` (pgAdmin) are reserved for the MySQL and PostgreSQL web administration interfaces, respectively.  
+> It is most recommended to use **only one of the database engines** and its respective administration tool, unless your project explicitly requires both.
 
 ---
 
-## 📦 Estructura del repositorio
+## 📦 Repository structure
 
 ```
 /
-├── docker-mi-proyecto/   # Configuración principal de Docker, Nginx, PHP, MySQL, PostgreSQL y docs
-├── (código fuente)      # Tu aplicación PHP (por defecto en la raíz)
+├── docker-mi-proyecto/   # Main Docker configuration, Nginx, PHP, MySQL, PostgreSQL and docs
+├── (source code)        # Your PHP application (by default in the root)
 ```
 
 -   **docker-mi-proyecto/**  
-    Configuración principal de Docker Compose, archivos de entorno, Nginx, PHP, MySQL, PostgreSQL y documentación detallada.
--   **(código fuente de tu aplicación)**  
-    Por defecto, tu código debe estar en la raíz del repositorio. Puedes ajustar la configuración para usar otra carpeta (ver documentación interna).
+    Main Docker Compose configuration, environment files, Nginx, PHP, MySQL, PostgreSQL and detailed documentation.
+-   **(your application source code)**  
+    By default, your code should be in the repository root. You can adjust the configuration to use another folder (see internal documentation).
 
 ---
 
-## 🚀 Primeros pasos rápidos
+## 🚀 Quick start
 
-1. 📖 Lee [`docker-mi-proyecto/readme.md`](docker-mi-proyecto/readme.md) para instrucciones completas y personalización.
-2. 📝 Copia `.env.example` a `.env` y personaliza tus variables.
-3. 🌐 (Solo la primera vez) Crea la red externa de Docker:
+1. 📖 Read [`docker-mi-proyecto/readme.md`](docker-mi-proyecto/Readme.md) for complete instructions and customization.
+2. 📝 Copy `.env.example` to `.env` and customize your variables.
+3. 🌐 (Only the first time) Create the external Docker network:
     ```bash
     docker network create mi_proyecto_network_nginx
     ```
-4. 🏗️ Levanta el entorno:
+4. 🏗️ Start the environment:
     ```bash
     cd docker-mi-proyecto
     docker compose up --build -d
@@ -48,54 +52,54 @@
 
 ---
 
-## ⚡ Tecnologías y soporte
+## ⚡ Technologies and support
 
--   **PHP-FPM 8.1+** (extensiones para Laravel, CodeIgniter, etc.)
--   **Nginx 1.28** (HTTP/HTTPS local)
--   **MySQL 8.0** y **PostgreSQL 16** (elige uno o ambos)
--   **phpMyAdmin** y **pgAdmin** (gestión visual de bases de datos)
--   **Xdebug** (debugging integrado para VS Code)
--   **Backups automáticos** diarios para MySQL y PostgreSQL
--   **Certificados SSL** autofirmados para desarrollo seguro
--   **Soporte multi-framework:** Laravel, CodeIgniter 3/4, proyectos legacy y modernos
--   **Multi-proyecto:** Puedes clonar y levantar varios stacks en paralelo cambiando nombres y puertos en `.env`
-
----
-
-> 🗄️ **Por defecto este entorno utiliza MySQL como base de datos principal**  
-> Si prefieres usar PostgreSQL, simplemente comenta los servicios de `mysql` y `phpmyadmin` en el archivo `docker-compose.yaml` y descomenta los servicios de `postgresql` y `pgadmin`.  
-> Así puedes cambiar fácilmente el stack de base de datos según las necesidades de tu proyecto.
+-   **PHP-FPM 8.1+** (extensions for Laravel, CodeIgniter, etc.)
+-   **Nginx 1.28** (local HTTP/HTTPS)
+-   **MySQL 8.0** and **PostgreSQL 16** (choose one or both)
+-   **phpMyAdmin** and **pgAdmin** (visual database management)
+-   **Xdebug** (integrated debugging for VS Code)
+-   **Automatic backups** daily for MySQL and PostgreSQL
+-   **SSL certificates** self-signed for secure development
+-   **Multi-framework support:** Laravel, CodeIgniter 3/4, legacy and modern projects
+-   **Multi-project:** You can clone and run multiple stacks in parallel by changing names and ports in `.env`
 
 ---
 
-## 📚 Más información
-
-Consulta la documentación completa en [`docker-mi-proyecto/readme.md`](docker-mi-proyecto/readme.md) para detalles sobre personalización, debugging, uso avanzado, múltiples proyectos y solución de problemas.
+> 🗄️ **By default this environment uses MySQL as the main database**  
+> If you prefer to use PostgreSQL, simply comment out the `mysql` and `phpmyadmin` services in the `docker-compose.yaml` file and uncomment the `postgresql` and `pgadmin` services.  
+> This way you can easily change the database stack according to your project needs.
 
 ---
 
-### 🤝 Contribuciones
+## 📚 More information
 
-¡Las contribuciones son bienvenidas! Si encuentras algún error, tienes sugerencias de mejora o quieres agregar nuevas características:
+Check the complete documentation at [`docker-mi-proyecto/readme.md`](docker-mi-proyecto/readme.md) for details on customization, debugging, advanced usage, multiple projects and troubleshooting.
 
-1. **Fork** este repositorio
-2. **Crea una rama** para tu feature (`git checkout -b feature/nueva-caracteristica`)
-3. **Commit** tus cambios (`git commit -am 'Agregar nueva característica'`)
-4. **Push** a la rama (`git push origin feature/nueva-caracteristica`)
-5. **Abre un Pull Request**
+---
 
-#### Ideas para contribuir
+### 🤝 Contributions
 
--   Soporte para otros frameworks (Symfony, CakePHP, etc.)
--   Configuraciones para diferentes versiones de PHP
--   Integración con otros servicios (Redis, Elasticsearch, etc.)
--   Mejoras en la documentación
--   Scripts de automatización adicionales
+Contributions are welcome! If you find any errors, have improvement suggestions or want to add new features:
 
-### 👨‍💻 Autor
+1. **Fork** this repository
+2. **Create a branch** for your feature (`git checkout -b feature/new-feature`)
+3. **Commit** your changes (`git commit -am 'Add new feature'`)
+4. **Push** to the branch (`git push origin feature/new-feature`)
+5. **Open a Pull Request**
+
+#### Ideas for contributing
+
+-   Support for other frameworks (Symfony, CakePHP, etc.)
+-   Configurations for different PHP versions
+-   Integration with other services (Redis, Elasticsearch, etc.)
+-   Documentation improvements
+-   Additional automation scripts
+
+### 👨‍💻 Author
 
 **Antonio Salcedo**  
-_Desarrollador Full Stack_
+_Full Stack Developer_
 
 ## 📄 License
 
@@ -103,8 +107,8 @@ This project is licensed under the **MIT** license. See the [LICENSE](LICENSE) f
 
 ---
 
-**¡Feliz desarrollo! 🚀**
+**Happy development! 🚀**
 
-> **Nota:** Este README está en constante evolución. Si encuentras algún error o tienes sugerencias, no dudes en abrir un issue o contribuir con mejoras.
+> **Note:** This README is constantly evolving. If you find any errors or have suggestions, don't hesitate to open an issue or contribute with improvements.
 
-> _Este README es breve y solo cubre lo esencial. Si tienes dudas, revisa la documentación interna o abre un issue._
+> _This README is brief and only covers the essentials. If you have questions, check the internal documentation or open an issue._

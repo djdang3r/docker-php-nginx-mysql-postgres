@@ -1,5 +1,9 @@
 # 🚀 Docker Mi Proyecto Stack
 
+> 🇬🇧 **Prefer English?**  
+> Puedes consultar una versión completamente traducida y detallada de esta documentación interna en [inglés](./Readme.md), con todos los pasos de configuración y consejos de uso.  
+> _¡Cámbiate al inglés si te resulta más cómodo!_
+
 Entorno de desarrollo completo para aplicaciones web modernas usando **Docker Compose**. Optimizado para frameworks como **Laravel** y **CodeIgniter** con herramientas de desarrollo integradas.
 
 [![Docker](https://img.shields.io/badge/Docker-20.10+-blue.svg)](https://www.docker.com/)
@@ -221,7 +225,6 @@ XDEBUG_MODE=develop,debug
 XDEBUG_CLIENT_PORT=9003
 ```
 
-
 ## 🚀 Instalación de Frameworks PHP en Docker
 
 > ⚠️ **IMPORTANTE:**  
@@ -231,41 +234,50 @@ XDEBUG_CLIENT_PORT=9003
 ### Laravel
 
 1. **Levanta los contenedores (si aún no lo hiciste):**
+
     ```bash
     docker compose up -d
     ```
 
 2. **Accede al contenedor PHP:**
+
     ```bash
     docker compose exec app bash
     ```
 
 3. **Instala Laravel en la carpeta deseada (por ejemplo, `testing_laravel`):**
+
     ```bash
     composer create-project laravel/laravel testing_laravel
     ```
+
     > Si quieres instalar Laravel en la raíz del proyecto, usa un punto:
+    >
     > ```bash
     > composer create-project laravel/laravel .
     > ```
 
 4. **Ajusta el root de Nginx:**  
-    Si instalaste Laravel en una subcarpeta, edita `nginx/nginx.conf`:
+   Si instalaste Laravel en una subcarpeta, edita `nginx/nginx.conf`:
+
     ```nginx
     root /var/www/testing_laravel/public;
     ```
+
     Si está en la raíz:
+
     ```nginx
     root /var/www/public;
     ```
 
 5. **Reinicia Nginx para aplicar cambios:**
+
     ```bash
     docker compose restart nginx
     ```
 
-6. **Accede a tu aplicación:**  
-    - HTTP: [http://localhost:8001](http://localhost:8001)  
+6. **Accede a tu aplicación:**
+    - HTTP: [http://localhost:8001](http://localhost:8001)
     - HTTPS: [https://localhost:8441](https://localhost:8441)
 
 ---
@@ -273,50 +285,58 @@ XDEBUG_CLIENT_PORT=9003
 ### CodeIgniter 4
 
 1. **Levanta los contenedores (si aún no lo hiciste):**
+
     ```bash
     docker compose up -d
     ```
 
 2. **Accede al contenedor PHP:**
+
     ```bash
     docker compose exec app bash
     ```
 
 3. **Instala CodeIgniter 4 en la carpeta deseada (por ejemplo, `ci4`):**
+
     ```bash
     composer create-project codeigniter4/appstarter ci4
     ```
 
 4. **Ajusta el root de Nginx:**  
-    Si instalaste CodeIgniter en una subcarpeta, edita `nginx/nginx.conf`:
+   Si instalaste CodeIgniter en una subcarpeta, edita `nginx/nginx.conf`:
+
     ```nginx
     root /var/www/ci4/public;
     ```
+
     Si está en la raíz:
+
     ```nginx
     root /var/www/public;
     ```
 
 5. **Reinicia Nginx para aplicar cambios:**
+
     ```bash
     docker compose restart nginx
     ```
 
-6. **Accede a tu aplicación:**  
-    - HTTP: [http://localhost:8001](http://localhost:8001)  
+6. **Accede a tu aplicación:**
+    - HTTP: [http://localhost:8001](http://localhost:8001)
     - HTTPS: [https://localhost:8441](https://localhost:8441)
 
 ---
 
 ### Notas adicionales
 
-- **No uses `laravel new` ni el instalador global de Laravel** dentro de Docker. Usa siempre `composer create-project`.
-- **Los archivos creados dentro del contenedor aparecerán en tu carpeta local** gracias al volumen Docker.
-- Si necesitas compilar assets frontend (Vite, npm), instala Node dentro del contenedor o usa un contenedor aparte para frontend.
+-   **No uses `laravel new` ni el instalador global de Laravel** dentro de Docker. Usa siempre `composer create-project`.
+-   **Los archivos creados dentro del contenedor aparecerán en tu carpeta local** gracias al volumen Docker.
+-   Si necesitas compilar assets frontend (Vite, npm), instala Node dentro del contenedor o usa un contenedor aparte para frontend.
 
 ---
 
 > Para más detalles sobre la estructura de carpetas y configuración de Nginx, revisa las secciones [Configuración por Framework](#-configuración-por-framework) y [Estructura del Proyecto](#-estructura-del-proyecto).
+
 ### 🎯 Configuración por Framework
 
 > ⚠️ **IMPORTANTE:**  

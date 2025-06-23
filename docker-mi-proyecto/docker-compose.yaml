@@ -1,6 +1,6 @@
 services:
     # =========================
-    # Servicio principal PHP-FPM
+    # Main PHP-FPM service
     # =========================
     app:
         build:
@@ -15,16 +15,16 @@ services:
             - ./php/xdebug/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
             - ./php/php.ini:/usr/local/etc/php/conf.d/custom.ini
         environment:
-            # Variables de entorno para la base de datos MySQL
+            # Environment variables for MySQL database
             - MYSQL_HOST=${MYSQL_HOST}
             - MYSQL_DATABASE=${MYSQL_DATABASE}
             - MYSQL_USER=${MYSQL_USER}
             - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-            # Variables de entorno para la base de datos PostgreSQL (opcional)
-            - POSTGRES_HOST=${POSTGRES_CONTAINER_NAME}
-            - POSTGRES_DB=${POSTGRES_DB}
-            - POSTGRES_USER=${POSTGRES_USER}
-            - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+            # Environment variables for PostgreSQL database (optional)
+            # - POSTGRES_HOST=${POSTGRES_CONTAINER_NAME}
+            # - POSTGRES_DB=${POSTGRES_DB}
+            # - POSTGRES_USER=${POSTGRES_USER}
+            # - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 
     # =========================
     # NGINX (Webserver)
@@ -42,9 +42,9 @@ services:
             - ./nginx/certs:/etc/nginx/certs
 
     # =========================
-    # MySQL (opcional)
-    # los bloques siguientes si quieres usar MySQL y phpMyAdmin
-    # Comentar o descomentar si se desea usar MySQL o no
+    # MySQL (optional)
+    # The following blocks if you want to use MySQL and phpMyAdmin
+    # Comment or uncomment if you want to use MySQL or not
     # =========================
 
     mysql:
@@ -52,7 +52,7 @@ services:
         container_name: ${MYSQL_CONTAINER_NAME}
         volumes:
             - ${MYSQL_DATA_VOLUME}:/var/lib/mysql
-            # Descomenta la siguiente línea si quieres inicializar la base de datos con un script SQL
+            # Uncomment the following line if you want to initialize the database with an SQL script
             # - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
         ports:
             - "${MYSQL_PORT}:3306"
@@ -64,8 +64,8 @@ services:
             MYSQL_DATABASE: ${MYSQL_DATABASE}
 
     # =========================
-    # phpMyAdmin (opcional)
-    # Descomenta este bloque si quieres usar phpMyAdmin para MySQL
+    # phpMyAdmin (optional)
+    # Uncomment this block if you want to use phpMyAdmin for MySQL
     # =========================
     phpmyadmin:
         image: phpmyadmin:5.2.2-apache
@@ -81,8 +81,8 @@ services:
             - mysql
 
     # # =========================
-    # # MySQL Backup (opcional)
-    # # Descomenta este bloque si quieres backups automáticos de MySQL
+    # # MySQL Backup (optional)
+    # # Uncomment this block if you want automatic MySQL backups
     # # =========================
     # mysql-backup:
     #     image: fradelg/mysql-cron-backup
@@ -93,16 +93,16 @@ services:
     #         - MYSQL_USER=${MYSQL_USER}
     #         - MYSQL_PASS=${MYSQL_PASSWORD}
     #         - MYSQL_DB=${MYSQL_DATABASE}
-    #         - CRON_TIME=0 17 * * * # Diario a las 17:00
+    #         - CRON_TIME=0 17 * * * # Daily at 17:00
     #     volumes:
     #         - ./mysql/backups:/backup
     #     depends_on:
     #         - mysql
 
     # =========================
-    # PostgreSQL (opcional)
-    # los bloques siguientes si quieres usar PostgreSQL y pgAdmin
-    # Comentar o descomentar si se desea usar PostgreSQL o no
+    # PostgreSQL (optional)
+    # The following blocks if you want to use PostgreSQL and pgAdmin
+    # Comment or uncomment if you want to use PostgreSQL or not
     # =========================
 
     # postgresql:
@@ -115,14 +115,14 @@ services:
     #         POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     #     volumes:
     #         - ${POSTGRES_DATA_VOLUME}:/var/lib/postgresql/data
-    #         # Descomenta la siguiente línea si quieres inicializar la base de datos con un script SQL
+    #         # Uncomment the following line if you want to initialize the database with an SQL script
     #         - ./postgresql/init.sql:/docker-entrypoint-initdb.d/init.sql
     #     ports:
     #         - "${POSTGRES_PORT}:5432"
 
     # # =========================
-    # # pgAdmin (opcional)
-    # # Descomenta este bloque si quieres usar pgAdmin para PostgreSQL
+    # # pgAdmin (optional)
+    # # Uncomment this block if you want to use pgAdmin for PostgreSQL
     # # =========================
     # pgadmin:
     #     image: dpage/pgadmin4
@@ -139,8 +139,8 @@ services:
     #         - ./postgresql/pgadmin:/var/lib/pgadmin
 
     # # =========================
-    # # PostgreSQL Backup (opcional)
-    # # Descomenta este bloque si quieres backups automáticos de PostgreSQL
+    # # PostgreSQL Backup (optional)
+    # # Uncomment this block if you want automatic PostgreSQL backups
     # # =========================
     # postgresql-backup:
     #     image: prodrigestivill/postgres-backup-local:17
@@ -151,7 +151,7 @@ services:
     #         - POSTGRES_DB=${POSTGRES_DB}
     #         - POSTGRES_USER=${POSTGRES_USER}
     #         - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-    #         - SCHEDULE=0 17 * * * # Diario a las 17:00
+    #         - SCHEDULE=0 17 * * * # Daily at 17:00
     #     volumes:
     #         - ./postgresql/backups:/backups
     #     depends_on:
@@ -163,7 +163,7 @@ volumes:
     # mi_proyecto_nginx_postgresqldata:
     #     driver: local
 
-# Descomentar si se desea usar una red externa para compartir entre servicios o conectarte a una base de datos externa
+# Uncomment if you want to use an external network to share between services or connect to an external database
 # networks:
 #   default:
 #     name: mi_proyecto_network_nginx

@@ -1,18 +1,18 @@
--- create una tabla de ejemplo
-CREATE TABLE IF NOT EXISTS ejemplo (
+-- create a sample table
+CREATE TABLE IF NOT EXISTS example (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    descripcion TEXT,
-    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- inserta algunos datos de ejemplo
-INSERT INTO ejemplo (nombre, descripcion) VALUES
-('Ejemplo 1', 'Descripción del ejemplo 1'),
-('Ejemplo 2', 'Descripción del ejemplo 2'),
-('Ejemplo 3', 'Descripción del ejemplo 3');
+-- insert some sample data
+INSERT INTO example (name, description) VALUES
+('Example 1', 'Description for example 1'),
+('Example 2', 'Description for example 2'),
+('Example 3', 'Description for example 3');
 
--- crea un usuario y otorga permisos
-CREATE USER 'usuario'@'%' IDENTIFIED BY 'contraseña';
-GRANT ALL PRIVILEGES ON *.* TO 'usuario'@'%';
+-- create a user and grant privileges
+CREATE USER 'user'@'%' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON *.* TO 'user'@'%';
 FLUSH PRIVILEGES;
