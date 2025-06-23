@@ -93,7 +93,6 @@ docker compose version
 ```bash
 # Clonar el repositorio
 git clone <URL_DEL_REPO>
-cd docker-compiler-nginx-mysql/docker-my-project
 
 # Copiar variables de entorno
 cp .env.example .env
@@ -158,7 +157,7 @@ docker compose ps
 ```
 docker-compiler-nginx-mysql/
 │
-├── docker-my-project/         # Configuración Docker
+├── docker/         # Configuración Docker
 │   ├── docker-compose.yaml     # Orquestación de servicios
 │   ├── .env.example            # Variables de entorno de ejemplo
 │   ├── .env                    # Variables de entorno (local)
@@ -417,7 +416,7 @@ docker compose restart nginx
 
 ```bash
 # 1. Crear directorio para certificados
-cd docker-my-project/nginx
+cd docker/nginx
 mkdir -p certs
 
 # 2. Generar certificado y clave privada
@@ -677,7 +676,7 @@ docker compose exec postgresql psql -U adminpostgresdocker -d my-project
 
 Los backups se crean automáticamente todos los días a las **17:00**.
 
-**Ubicación:** `docker-my-project/mysql/backups/`  
+**Ubicación:** `docker/mysql/backups/`  
 **Formato:** `YYYYMMDDHHMM.nombredb.sql.gz`
 
 ##### Crear backup manual
@@ -694,10 +693,10 @@ docker compose exec mysql mysqldump -uroot -ppassword my_project | gzip > backup
 
 ```bash
 # 1. Descomprimir archivo
-gunzip docker-my-project/mysql/backups/202506090224.my_project.sql.gz
+gunzip docker/mysql/backups/202506090224.my_project.sql.gz
 
 # 2. Restaurar a la base de datos
-docker compose exec -T mysql mysql -uroot -ppassword my_project < docker-my-project/mysql/backups/202506090224.my_project.sql
+docker compose exec -T mysql mysql -uroot -ppassword my_project < docker/mysql/backups/202506090224.my_project.sql
 
 # 3. Verificar restauración
 docker compose exec mysql mysql -uroot -ppassword -e "SHOW TABLES;" my_project
@@ -707,7 +706,7 @@ docker compose exec mysql mysql -uroot -ppassword -e "SHOW TABLES;" my_project
 
 Los backups se crean automáticamente todos los días a las **17:00**.
 
-**Ubicación:** `docker-my-project/postgresql/backups/`  
+**Ubicación:** `docker/postgresql/backups/`  
 **Formato:** `YYYYMMDDHHMM.my-project.sql.gz`
 
 ##### Crear backup manual
@@ -720,10 +719,10 @@ docker compose exec postgresql pg_dump -U adminpostgresdocker -d my-project > ./
 
 ```bash
 # Descomprimir si es necesario
-gunzip docker-my-project/postgresql/backups/202506211700.my-project.sql.gz
+gunzip docker/postgresql/backups/202506211700.my-project.sql.gz
 
 # Restaurar
-docker compose exec -T postgresql psql -U adminpostgresdocker -d my-project < docker-my-project/postgresql/backups/202506211700.my-project.sql
+docker compose exec -T postgresql psql -U adminpostgresdocker -d my-project < docker/postgresql/backups/202506211700.my-project.sql
 ```
 
 ### 🗄️ Base de Datos Compartida
@@ -790,17 +789,6 @@ MYSQL_DATABASE=nombre_de_mi_base
 
 ### 🔄 Múltiples Proyectos
 
-#### Método rápido
-
-```bash
-# 1. Copiar el directorio
-cp -r docker-my-project docker-nuevo-proyecto
-
-# 2. Actualizar variables en .env
-cd docker-nuevo-proyecto
-nano .env
-```
-
 #### Variables a cambiar
 
 ```env
@@ -827,7 +815,7 @@ XDEBUG_CLIENT_PORT=9004
 docker ps -a
 
 # Detener proyecto específico
-cd docker-my-project && docker compose down
+cd docker && docker compose down
 
 # Listar redes de Docker
 docker network ls

@@ -19,7 +19,7 @@ function loadEnv($envPath)
     }
 }
 
-$envPath = __DIR__ . '/../docker-my-project/.env';
+$envPath = __DIR__ . '/../.env';
 loadEnv($envPath);
 
 // Include the service checker file
