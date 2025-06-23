@@ -53,7 +53,7 @@ services:
         volumes:
             - ${MYSQL_DATA_VOLUME}:/var/lib/mysql
             # Uncomment the following line if you want to initialize the database with an SQL script
-            # - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+            - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
         ports:
             - "${MYSQL_PORT}:3306"
         restart: unless-stopped
