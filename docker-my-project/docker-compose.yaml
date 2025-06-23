@@ -158,13 +158,13 @@ services:
     #         - postgresql
 
 volumes:
-    mi_proyecto_nginx_mysqldata:
+    my_project_nginx_mysqldata:
         driver: local
-    # mi_proyecto_nginx_postgresqldata:
+    # my_project_nginx_postgresqldata:
     #     driver: local
 
 # Uncomment if you want to use an external network to share between services or connect to an external database
 # networks:
 #   default:
-#     name: mi_proyecto_network_nginx
+#     name: my_project_network_nginx
 #     external: true

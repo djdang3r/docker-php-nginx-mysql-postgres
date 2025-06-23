@@ -25,11 +25,11 @@
 
 ```
 /
-├── docker-mi-proyecto/   # Configuración principal de Docker, Nginx, PHP, MySQL, PostgreSQL y docs
+├── docker-my-project/   # Configuración principal de Docker, Nginx, PHP, MySQL, PostgreSQL y docs
 ├── (código fuente)      # Tu aplicación PHP (por defecto en la raíz)
 ```
 
--   **docker-mi-proyecto/**  
+-   **docker-my-project/**  
     Configuración principal de Docker Compose, archivos de entorno, Nginx, PHP, MySQL, PostgreSQL y documentación detallada.
 -   **(código fuente de tu aplicación)**  
     Por defecto, tu código debe estar en la raíz del repositorio. Puedes ajustar la configuración para usar otra carpeta (ver documentación interna).
@@ -38,15 +38,15 @@
 
 ## 🚀 Primeros pasos rápidos
 
-1. 📖 Lee [`docker-mi-proyecto/Readme.es.md`](docker-mi-proyecto/Readme.es.md) para instrucciones completas y personalización.
+1. 📖 Lee [`docker-my-project/Readme.es.md`](docker-my-project/Readme.es.md) para instrucciones completas y personalización.
 2. 📝 Copia `.env.example` a `.env` y personaliza tus variables.
 3. 🌐 (Solo la primera vez) Crea la red externa de Docker:
     ```bash
-    docker network create mi_proyecto_network_nginx
+    docker network create my_project_network_nginx
     ```
 4. 🏗️ Levanta el entorno:
     ```bash
-    cd docker-mi-proyecto
+    cd docker-my-project
     docker compose up --build -d
     ```
 
@@ -74,7 +74,7 @@
 
 ## 📚 Más información
 
-Consulta la documentación completa en [`docker-mi-proyecto/readme.md`](docker-mi-proyecto/readme.md) para detalles sobre personalización, debugging, uso avanzado, múltiples proyectos y solución de problemas.
+Consulta la documentación completa en [`docker-my-project/readme.md`](docker-my-project/readme.md) para detalles sobre personalización, debugging, uso avanzado, múltiples proyectos y solución de problemas.
 
 ---
 

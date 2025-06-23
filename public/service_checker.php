@@ -1,6 +1,5 @@
 <?php
 
-// service_checker.php
 class ServiceChecker
 {
     private static function getEnvOrDefault($env, $default = '')

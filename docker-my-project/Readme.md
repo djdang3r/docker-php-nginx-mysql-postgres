@@ -93,7 +93,7 @@ docker compose version
 ```bash
 # Clone repository
 git clone <REPO_URL>
-cd docker-compiler-nginx-mysql/docker-mi-proyecto
+cd docker-compiler-nginx-mysql/docker-my-project
 
 # Copy environment variables
 cp .env.example .env
@@ -102,7 +102,7 @@ cp .env.example .env
 #### 2. Create external network (first time only)
 
 ```bash
-docker network create mi_proyecto_network_mysql
+docker network create my_project_network_mysql
 ```
 
 > **💡 Note:** You only need to do this once, even if you have multiple projects.
@@ -158,7 +158,7 @@ docker compose ps
 ```
 docker-compiler-nginx-mysql/
 │
-├── docker-mi-proyecto/         # Docker configuration
+├── docker-my-project/         # Docker configuration
 │   ├── docker-compose.yaml     # Service orchestration
 │   ├── .env.example            # Example environment variables
 │   ├── .env                    # Environment variables (local)
@@ -199,7 +199,7 @@ docker-compiler-nginx-mysql/
 
 ```env
 # === APPLICATION ===
-APP_SERVICE_NAME=mi-proyecto-nginx-app
+APP_SERVICE_NAME=my-project-nginx-app
 
 # === PORTS ===
 NGINX_PORT=8001
@@ -212,13 +212,13 @@ MYSQL_HOST=mysql
 MYSQL_ROOT_PASSWORD=password
 MYSQL_USER=adminmysqldocker
 MYSQL_PASSWORD=password_enviroment
-MYSQL_DATABASE=mi_proyecto
+MYSQL_DATABASE=my_project
 
 # === POSTGRESQL ===
 POSTGRES_HOST=postgresql
 POSTGRES_USER=adminpostgresdocker
 POSTGRES_PASSWORD=password_enviroment
-POSTGRES_DB=mi-proyecto
+POSTGRES_DB=my-project
 
 # === XDEBUG ===
 XDEBUG_MODE=develop,debug
@@ -417,7 +417,7 @@ docker compose restart nginx
 
 ```bash
 # 1. Create directory for certificates
-cd docker-mi-proyecto/nginx
+cd docker-my-project/nginx
 mkdir -p certs
 
 # 2. Generate certificate and private key
@@ -642,10 +642,10 @@ To use MySQL and phpMyAdmin:
 
 ```bash
 # Access as root
-docker compose exec mysql mysql -uroot -ppassword mi_proyecto
+docker compose exec mysql mysql -uroot -ppassword my_project
 
 # Access as regular user
-docker compose exec mysql mysql -uadminmysqldocker -ppassword_enviroment mi_proyecto
+docker compose exec mysql mysql -uadminmysqldocker -ppassword_enviroment my_project
 ```
 
 ### 🐘 PostgreSQL
@@ -660,7 +660,7 @@ docker compose exec mysql mysql -uadminmysqldocker -ppassword_enviroment mi_proy
 
 -   **Host name/address:** `postgresql`
 -   **Port:** `5432`
--   **Maintenance database:** `postgres` or `mi-proyecto`
+-   **Maintenance database:** `postgres` or `my-project`
 -   **Username:** `adminpostgresdocker`
 -   **Password:** `password_enviroment`
 
@@ -668,7 +668,7 @@ docker compose exec mysql mysql -uadminmysqldocker -ppassword_enviroment mi_proy
 
 ```bash
 # Direct access
-docker compose exec postgresql psql -U adminpostgresdocker -d mi-proyecto
+docker compose exec postgresql psql -U adminpostgresdocker -d my-project
 ```
 
 ### 🔄 Automatic Backups
@@ -677,7 +677,7 @@ docker compose exec postgresql psql -U adminpostgresdocker -d mi-proyecto
 
 Backups are created automatically every day at **5:00 PM**.
 
-**Location:** `docker-mi-proyecto/mysql/backups/`  
+**Location:** `docker-my-project/mysql/backups/`  
 **Format:** `YYYYMMDDHHMM.databasename.sql.gz`
 
 ##### Create manual backup
@@ -687,43 +687,43 @@ Backups are created automatically every day at **5:00 PM**.
 docker compose run --rm mysql-backup /backup.sh
 
 # Specific backup
-docker compose exec mysql mysqldump -uroot -ppassword mi_proyecto | gzip > manual_backup.sql.gz
+docker compose exec mysql mysqldump -uroot -ppassword my_project | gzip > manual_backup.sql.gz
 ```
 
 ##### Restore backup
 
 ```bash
 # 1. Decompress file
-gunzip docker-mi-proyecto/mysql/backups/202506090224.mi_proyecto.sql.gz
+gunzip docker-my-project/mysql/backups/202506090224.my_project.sql.gz
 
 # 2. Restore to database
-docker compose exec -T mysql mysql -uroot -ppassword mi_proyecto < docker-mi-proyecto/mysql/backups/202506090224.mi_proyecto.sql
+docker compose exec -T mysql mysql -uroot -ppassword my_project < docker-my-project/mysql/backups/202506090224.my_project.sql
 
 # 3. Verify restoration
-docker compose exec mysql mysql -uroot -ppassword -e "SHOW TABLES;" mi_proyecto
+docker compose exec mysql mysql -uroot -ppassword -e "SHOW TABLES;" my_project
 ```
 
 #### PostgreSQL - Automatic backups
 
 Backups are created automatically every day at **5:00 PM**.
 
-**Location:** `docker-mi-proyecto/postgresql/backups/`  
-**Format:** `YYYYMMDDHHMM.mi-proyecto.sql.gz`
+**Location:** `docker-my-project/postgresql/backups/`  
+**Format:** `YYYYMMDDHHMM.my-project.sql.gz`
 
 ##### Create manual backup
 
 ```bash
-docker compose exec postgresql pg_dump -U adminpostgresdocker -d mi-proyecto > ./postgresql/backups/manual-backup.sql
+docker compose exec postgresql pg_dump -U adminpostgresdocker -d my-project > ./postgresql/backups/manual-backup.sql
 ```
 
 ##### Restore backup
 
 ```bash
 # Decompress if necessary
-gunzip docker-mi-proyecto/postgresql/backups/202506211700.mi-proyecto.sql.gz
+gunzip docker-my-project/postgresql/backups/202506211700.my-project.sql.gz
 
 # Restore
-docker compose exec -T postgresql psql -U adminpostgresdocker -d mi-proyecto < docker-mi-proyecto/postgresql/backups/202506211700.mi-proyecto.sql
+docker compose exec -T postgresql psql -U adminpostgresdocker -d my-project < docker-my-project/postgresql/backups/202506211700.my-project.sql
 ```
 
 ### 🗄️ Shared Database
@@ -749,7 +749,7 @@ If you have **multiple projects** that need access to the **same MySQL database*
 
 ```bash
 # Create network (only once)
-docker network create mi_proyecto_network_mysql
+docker network create my_project_network_mysql
 ```
 
 In each `docker-compose.yaml`:
@@ -758,7 +758,7 @@ In each `docker-compose.yaml`:
 networks:
     default:
         external:
-            name: mi_proyecto_network_mysql
+            name: my_project_network_mysql
 ```
 
 ##### 3. Configure host in all projects
@@ -794,7 +794,7 @@ MYSQL_DATABASE=my_database_name
 
 ```bash
 # 1. Copy directory
-cp -r docker-mi-proyecto docker-new-project
+cp -r docker-my-project docker-new-project
 
 # 2. Update variables in .env
 cd docker-new-project
@@ -827,7 +827,7 @@ XDEBUG_CLIENT_PORT=9004
 docker ps -a
 
 # Stop specific project
-cd docker-mi-proyecto && docker compose down
+cd docker-my-project && docker compose down
 
 # List Docker networks
 docker network ls
@@ -864,7 +864,7 @@ max_connections = 100
 docker stats
 
 # View specific usage per container
-docker stats docker-mi-proyecto-app-1
+docker stats docker-my-project-app-1
 ```
 
 ### 🚨 Troubleshooting
