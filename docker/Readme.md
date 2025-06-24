@@ -955,6 +955,56 @@ docker compose up -d
 
 ---
 
+### ⚠️ Special Note: File Permissions on Windows (Laravel & SQLite)
+
+If you use **Windows + Docker Desktop** for Laravel or CodeIgniter, you may encounter "Permission denied" or "readonly database" errors, even if everything works fine on Linux.
+
+#### Common errors
+
+-   `file_put_contents(...): Failed to open stream: Permission denied`
+-   `SQLSTATE[HY000]: General error: 8 attempt to write a readonly database`
+
+#### Why does this happen?
+
+-   On **Linux**, file permissions are preserved between your host and the container.
+-   On **Windows**, Docker mounts volumes differently, and permissions may not be correctly mapped for the `www-data` user (used by PHP-FPM).
+
+#### Solution for Laravel (storage/cache)
+
+Inside the PHP container, run:
+
+```sh
+cd /var/www/your_project
+chown -R www-data:www-data storage bootstrap/cache
+chmod -R 775 storage bootstrap/cache
+```
+
+#### Solution for SQLite
+
+1. Check the path to your SQLite file (usually `database/database.sqlite`).
+2. Inside the PHP container, run:
+
+```sh
+cd /var/www/your_project
+touch database/database.sqlite
+chown -R www-data:www-data database
+chmod -R 775 database
+```
+
+#### If you are on Windows and still have issues:
+
+-   Make sure your editor or antivirus is **not locking files**.
+-   Ensure Docker Desktop has **full access** to your project folder.
+-   As a last resort (for development only), you can use `chmod -R 777` on the affected folders.
+
+---
+
+**Summary:**  
+If you see permission errors, always check and fix permissions inside the container.  
+This is a common issue on Windows, but easily solved with the above commands.
+
+---
+
 ## 📚 Additional Resources
 
 > **Important note:**  
