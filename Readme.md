@@ -74,7 +74,7 @@
 
 ## 📚 More information
 
-Check the complete documentation at [`docker/readme.md`](docker/readme.md) for details on customization, debugging, advanced usage, multiple projects and troubleshooting.
+Check the complete documentation at [`docker/readme.md`](docker/Readme.md) for details on customization, debugging, advanced usage, multiple projects and troubleshooting.
 
 ---
 
