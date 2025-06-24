@@ -5,7 +5,7 @@
 > _¡Cámbiate al inglés si te resulta más cómodo!_
 
 [![Docker](https://img.shields.io/badge/Docker-20.10%2B-blue?logo=docker)](https://www.docker.com/)
-[![PHP](https://img.shields.io/badge/PHP-8.4.8-purple?logo=php)](https://php.net/)
+[![PHP](https://img.shields.io/badge/PHP-8.4-purple?logo=php)](https://php.net/)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0-orange?logo=mysql)](https://mysql.com/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue?logo=postgresql)](https://postgresql.org/)
 [![Nginx](https://img.shields.io/badge/Nginx-1.28-green?logo=nginx)](https://nginx.org/)

@@ -7,7 +7,7 @@
 Complete development environment for modern web applications using **Docker Compose**. Optimized for frameworks like **Laravel** and **CodeIgniter** with integrated development tools.
 
 [![Docker](https://img.shields.io/badge/Docker-20.10+-blue.svg)](https://www.docker.com/)
-[![PHP](https://img.shields.io/badge/PHP-8.4.8-purple.svg)](https://php.net/)
+[![PHP](https://img.shields.io/badge/PHP-8.4-purple.svg)](https://php.net/)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0-orange.svg)](https://mysql.com/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue.svg)](https://postgresql.org/)
 [![Nginx](https://img.shields.io/badge/Nginx-1.28-green.svg)](https://nginx.org/)
