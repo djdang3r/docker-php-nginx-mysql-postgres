@@ -92,13 +92,18 @@ docker compose version
 
 ```bash
 # Clone repository
-git clone <REPO_URL>
+git clone https://github.com/Jsrivero22/docker-php-nginx-mysql-postgres
 
 # Copy environment variables
 cp .env.example .env
 ```
 
 #### 2. Create external network (first time only)
+
+> ⚠️ **Important:**  
+> If your `docker-compose.yaml` uses an external network (e.g., `networks: default: external: name: my_project_network_mysql`), **you must create it manually before running `docker compose up` or `build`**.  
+> If you don't, Docker will show an error and won't start the services.  
+> If you don't define an external network, Docker will automatically create a default internal network.
 
 ```bash
 docker network create my_project_network_mysql
@@ -957,7 +962,7 @@ docker compose up -d
 
 ### ⚠️ Special Note: File Permissions on Windows (Laravel & SQLite)
 
-If you use **Windows + Docker Desktop** for Laravel or CodeIgniter, you may encounter "Permission denied" or "readonly database" errors, even if everything works fine on Linux.
+If you use **Windows + Docker Desktop** for Laravel, you may encounter "Permission denied" or "readonly database" errors, even if everything works fine on Linux.
 
 #### Common errors
 
@@ -996,6 +1001,20 @@ chmod -R 775 database
 -   Make sure your editor or antivirus is **not locking files**.
 -   Ensure Docker Desktop has **full access** to your project folder.
 -   As a last resort (for development only), you can use `chmod -R 777` on the affected folders.
+
+#### Solution for CodeIgniter 4 (`writable/`)
+
+If you use CodeIgniter 4, the `writable/` folder **must be owned by `www-data` and writable**. On Windows + Docker, this can fail and cause 500 errors or issues saving files/logs.
+
+Inside the PHP container, run:
+
+```sh
+cd /var/www/your_project
+chown -R www-data:www-data writable
+chmod -R 775 writable
+```
+
+> **Note:** On Ubuntu/Linux this is usually not needed, but on Windows it is essential to avoid permission errors.
 
 ---
 

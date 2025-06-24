@@ -92,13 +92,18 @@ docker compose version
 
 ```bash
 # Clonar el repositorio
-git clone <URL_DEL_REPO>
+git clone https://github.com/Jsrivero22/docker-php-nginx-mysql-postgres
 
 # Copiar variables de entorno
 cp .env.example .env
 ```
 
 #### 2. Crear la red externa (solo la primera vez)
+
+> ⚠️ **Importante:**  
+> Si en tu `docker-compose.yaml` usas una red externa (por ejemplo, con `networks: default: external: name: my_project_network_mysql`), **debes crearla manualmente antes de ejecutar `docker compose up` o `build`**.  
+> Si no la creas, Docker mostrará un error y no podrá iniciar los servicios.  
+> Si no defines una red externa, Docker creará automáticamente una red interna por defecto.
 
 ```bash
 docker network create my_project_network_mysql
@@ -957,7 +962,7 @@ docker compose up -d
 
 ### ⚠️ Nota especial: Permisos de archivos en Windows (Laravel y SQLite)
 
-Si usas **Windows + Docker Desktop** para Laravel o CodeIgniter, puedes encontrar errores como "Permission denied" o "readonly database", aunque en Linux todo funcione bien.
+Si usas **Windows + Docker Desktop** para Laravel, puedes encontrar errores como "Permission denied" o "readonly database", aunque en Linux todo funcione bien.
 
 #### Errores comunes
 
@@ -996,6 +1001,20 @@ chmod -R 775 database
 -   Asegúrate de que tu editor o antivirus **no esté bloqueando archivos**.
 -   Verifica que Docker Desktop tenga **acceso completo** a tu carpeta de proyecto.
 -   Como último recurso (solo en desarrollo), puedes usar `chmod -R 777` en las carpetas afectadas.
+
+#### Solución para CodeIgniter 4 (`writable/`)
+
+Si usas CodeIgniter 4, la carpeta `writable/` **debe ser propiedad de `www-data` y tener permisos de escritura**. En Windows + Docker, esto puede fallar y causar errores 500 o problemas al guardar archivos/logs.
+
+Dentro del contenedor PHP, ejecuta:
+
+```sh
+cd /var/www/tu_proyecto
+chown -R www-data:www-data writable
+chmod -R 775 writable
+```
+
+> **Nota:** En Ubuntu/Linux esto normalmente no es necesario, pero en Windows es fundamental para evitar errores de permisos.
 
 ---
 
