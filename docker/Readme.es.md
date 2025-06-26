@@ -233,9 +233,9 @@ XDEBUG_CLIENT_PORT=9003
 
 > ⚠️ **IMPORTANTE:**  
 > No instales PHP, Composer ni el instalador de Laravel en tu máquina local.  
-> Todo debe hacerse **dentro del contenedor Docker** para mantener tu entorno limpio y reproducible.
+> Todo debe hacerse **dentro del contenedor Docker** para mantener tu entorno limpio y reproducible. Readme.es laravel.md
 
-### Laravel
+### Laravel [Instalacion Laravel 12](./Readme.es.laravel.md)
 
 1. **Levanta los contenedores (si aún no lo hiciste):**
 
